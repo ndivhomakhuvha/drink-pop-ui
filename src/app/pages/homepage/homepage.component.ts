@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, retry, tap } from 'rxjs';
 import { ProductResponse } from '../../interfaces/ProductInterface';
 
 @Component({
@@ -24,6 +24,7 @@ export class HomepageComponent implements OnInit {
     this.productService
       .getProducts()
       .pipe(
+        retry(4),
         tap(() => (this.loading = false)),
         catchError((error) => {
           this.errorMessage = 'An error occurred while fetching products.';
