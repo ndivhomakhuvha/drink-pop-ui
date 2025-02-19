@@ -1,1 +1,62 @@
-<p>homepage works!</p>
+<div class="homepage_container">
+  <img
+    src="../../../assets/images/500-ml-empty-glass-bottle-for-bevarage-500x500-removebg-preview.png"
+    alt=""
+  />
+  <p>
+    You like beer sales like "<span
+      >BUY 3 FOR R48 Valid until 31 March 2025</span
+    >"?
+  </p>
+
+  @if(showInputValue == false){
+  <button type="button" class="btn btn-secondary btn-sm" (click)="showInput()">
+    Get on waitlist
+  </button>
+  } @if (showInputValue ==true && succesfullMessafe == false) {
+  <form [formGroup]="emailForm" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        id="exampleFormControlInput1"
+        placeholder="name@example.com"
+      />
+
+      <button
+        type="button"
+        [disabled]="emailForm.invalid"
+        class="btn btn-success btn-sm"
+        (click)="submit()"
+      >
+        Submit @if (loading == true) {
+        <span
+          class="spinner-border spinner-border-sm"
+          aria-hidden="true"
+        ></span>
+        }
+      </button>
+    </div>
+  </form>
+
+  <div
+    *ngIf="
+      emailForm.controls['email'].invalid && emailForm.controls['email'].touched
+    "
+    class="text-danger"
+  >
+    <div *ngIf="emailForm.controls['email'].errors?.['required']">
+      Email is required.
+    </div>
+    <div *ngIf="emailForm.controls['email'].errors?.['email']">
+      Please enter a valid email address.
+    </div>
+  </div>
+
+  } @if(succesfullMessafe){
+  <div class="alert alert-success" role="alert">
+    {{ errorMessage }}
+  </div>
+  }
+</div>
