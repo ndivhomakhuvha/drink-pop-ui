@@ -21,7 +21,9 @@ p {
   font-size: 12px;
 }
 
-.mb-3 {
+
+
+.inside_form {
   display: flex;
   flex-direction: row;
   gap: 4px;
@@ -53,5 +55,12 @@ app-icons {
 @media (max-width:900px) {
   p {
     width: 90%;
+  }
+  form {
+    width: 90%;
+  }
+
+  .inside_form {
+    width: 100%;
   }
 }
