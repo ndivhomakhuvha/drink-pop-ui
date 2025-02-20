@@ -8,7 +8,9 @@
   justify-content: center;
 }
 
-
+.btn-secondary {
+  outline: 3px solid rgba(70, 69, 69, 0.363) !important;
+}
 
 
 p {
@@ -56,6 +58,7 @@ app-icons {
   p {
     width: 90%;
   }
+
   form {
     width: 90%;
   }
