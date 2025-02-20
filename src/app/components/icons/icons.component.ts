@@ -1,4 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { Icon } from '../../interfaces/IconInterface';
 
 @Component({
   selector: 'app-icons',
@@ -8,4 +9,10 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   templateUrl: './icons.component.html',
   styleUrl: './icons.component.scss',
 })
-export class IconsComponent {}
+export class IconsComponent {
+  @Input() icon: Icon = {
+    iconName: '',
+    iconColor: '',
+    iconHeight: '',
+  };
+}

@@ -1,0 +1,55 @@
+<div class="homepage_container">
+  <app-image [image]="imageUrl" [height]="imageHeight"></app-image>
+  <p>
+    You like beer sales like "<span
+      >BUY 3 FOR R48 Valid until 31 March 2025</span
+    >"?
+  </p>
+
+  @if(showInputValue == false){
+  <button type="button" class="btn btn-secondary btn-sm" (click)="showInput()">
+    Get on waitlist
+  </button>
+  } @if (showInputValue ==true && showAlert == false) {
+  <form [formGroup]="emailForm" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        id="exampleFormControlInput1"
+        placeholder="name@example.com"
+      />
+      <button
+        type="button"
+        [disabled]="emailForm.invalid"
+        class="btn btn-success btn-sm"
+        (click)="submit()"
+      >
+        Submit @if (loading == true) {
+        <span
+          class="spinner-border spinner-border-sm"
+          aria-hidden="true"
+        ></span>
+        }
+      </button>
+    </div>
+  </form>
+  @if (emailForm.controls['email'].invalid &&
+  emailForm.controls['email'].touched) {
+  <div class="text-danger">
+    @if (emailForm.controls['email'].errors?.['required']) {
+    <div>Email is required.</div>
+    } @if (emailForm.controls['email'].errors?.['email']) {
+    <div>Please enter a valid email address.</div>
+    }
+  </div>
+  } } @if (showAlert) {
+  <app-alert
+    [alertMessage]="errorMessage"
+    [successAlert]="successResponse"
+  ></app-alert>
+  @if (successResponse == false) {
+  <app-icons [icon]="icon" (click)="restart()"></app-icons>
+  } }
+</div>
