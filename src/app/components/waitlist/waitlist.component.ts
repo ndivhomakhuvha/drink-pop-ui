@@ -88,7 +88,7 @@ export class WaitlistComponent {
             this.showAlert = true;
             this.successResponse = false;
             this.loading = false;
-            if (err.error && err.error.message) {
+            if (err.error.message != 'Failed to fetch') {
               this.errorMessage = err.error.message; // Display actual error message
             } else {
               this.errorMessage = 'Oops! Something went wrong on our end.';
