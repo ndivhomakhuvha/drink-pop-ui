@@ -3,11 +3,8 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { catchError, Observable, of, retry, tap } from 'rxjs';
 import { ProductResponse } from '../../interfaces/ProductInterface';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { WaitlistComponent } from "../../components/waitlist/waitlist.component";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WaitlistComponent } from '../../components/waitlist/waitlist.component';
 
 @Component({
   selector: 'app-homepage',
@@ -22,35 +19,23 @@ export class HomepageComponent implements OnInit {
   loading: boolean = false;
   errorMessage: string = '';
 
-
   constructor(private productService: ProductService) {}
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   getProducts(): void {
     this.productService
       .getProducts()
       .pipe(
         retry(4),
-        tap(() => (this.loading = false)),
-        catchError((error) => {
-          this.errorMessage = 'An error occurred while fetching products.';
-          this.loading = false;
-          return of({ message: 'Error', statusCode: 500, data: [] });
-        })
+        tap(() => (this.loading = false))
       )
       .subscribe({
         next: (data) => {
-          console.log('Data fetched:', data);
           this.products$ = of(data);
         },
         error: (err) => {
-          console.error('Error:', err);
           this.errorMessage = 'Failed to fetch products';
         },
       });
   }
-
-
 }

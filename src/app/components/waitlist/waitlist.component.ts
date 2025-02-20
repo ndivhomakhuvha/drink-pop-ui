@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -9,7 +14,7 @@ import {
 import { retry, tap, catchError, of } from 'rxjs';
 
 import { ResponseInterface } from '../../interfaces/ResponeInterface';
-
+import confetti from 'canvas-confetti';
 import { WaitlistService } from '../../services/waitlist.service';
 import { AlertComponent } from '../alert/alert.component';
 import { ImageComponent } from '../image/image.component';
@@ -26,10 +31,12 @@ import { Icon } from '../../interfaces/IconInterface';
     ImageComponent,
     IconsComponent,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './waitlist.component.html',
   styleUrl: './waitlist.component.scss',
 })
 export class WaitlistComponent {
+  @ViewChild('confettiCanvas') confettiCanvas!: ElementRef<HTMLCanvasElement>;
   imageUrl: string =
     '../../../assets/images/500-ml-empty-glass-bottle-for-bevarage-500x500-removebg-preview.png';
   imageHeight: string = '300px';
@@ -74,13 +81,14 @@ export class WaitlistComponent {
             this.showAlert = true;
             this.successResponse = true;
             this.loading = false;
-            this.errorMessage = 'Sent data succesfully';
+            this.errorMessage = data.message;
+            this.launchConfetti();
           },
-          error: (err) => {
+          error: (err: ResponseInterface) => {
             this.showAlert = true;
             this.successResponse = false;
             this.loading = false;
-            this.errorMessage = 'Something wrong happend to the server';
+            this.errorMessage = 'Oops! Something went wrong on our end.';
           },
           complete: () => {
             this.loading = false;
@@ -94,5 +102,19 @@ export class WaitlistComponent {
     this.showInputValue = true;
     this.errorMessage = '';
     this.emailForm.reset();
+  }
+
+  launchConfetti() {
+    const myCanvas = this.confettiCanvas.nativeElement;
+    const confettiInstance = confetti.create(myCanvas, { resize: true });
+
+    confettiInstance({
+      particleCount: 250,
+      spread: 150,
+      origin: { y: 0.6 },
+      startVelocity: 15,
+      decay: 0.95,
+      ticks: 100,
+    });
   }
 }

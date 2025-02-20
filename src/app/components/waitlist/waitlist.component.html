@@ -1,9 +1,11 @@
 <div class="homepage_container">
+  <canvas #confettiCanvas></canvas>
+
   <app-image [image]="imageUrl" [height]="imageHeight"></app-image>
   <p>
-    You like beer sales like "<span
-      >BUY 3 FOR R48 Valid until 31 March 2025</span
-    >"?
+    Love beer deals like "<span>BUY 3 FOR R48 Valid until 31 March 2025</span>"?
+    🍻 <strong>Join our waitlist</strong> to get the hottest beer sales across
+    all stores – before anyone else!
   </p>
 
   @if(showInputValue == false){
