@@ -84,11 +84,15 @@ export class WaitlistComponent {
             this.errorMessage = data.message;
             this.launchConfetti();
           },
-          error: (err: ResponseInterface) => {
+          error: (err) => {
             this.showAlert = true;
             this.successResponse = false;
             this.loading = false;
-            this.errorMessage = 'Oops! Something went wrong on our end.';
+            if (err.error && err.error.message) {
+              this.errorMessage = err.error.message; // Display actual error message
+            } else {
+              this.errorMessage = 'Oops! Something went wrong on our end.';
+            }
           },
           complete: () => {
             this.loading = false;

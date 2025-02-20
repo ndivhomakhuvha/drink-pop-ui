@@ -10,7 +10,7 @@
 
   @if(showInputValue == false){
   <button type="button" class="btn btn-secondary btn-sm" (click)="showInput()">
-    Get on waitlist
+    Join waitlist
   </button>
   } @if (showInputValue ==true && showAlert == false) {
   <form [formGroup]="emailForm" (ngSubmit)="submit()">
