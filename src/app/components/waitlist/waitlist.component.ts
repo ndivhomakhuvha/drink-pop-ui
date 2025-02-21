@@ -38,7 +38,7 @@ import { Icon } from '../../interfaces/IconInterface';
 export class WaitlistComponent {
   @ViewChild('confettiCanvas') confettiCanvas!: ElementRef<HTMLCanvasElement>;
   imageUrl: string =
-    '../../../assets/images/500-ml-empty-glass-bottle-for-bevarage-500x500-removebg-preview.png';
+    'https://res.cloudinary.com/dpf2xpavj/image/upload/v1740163067/drink-pop_m40wea.png';
   imageHeight: string = '300px';
 
   loading: boolean = false;
