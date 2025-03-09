@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { catchError, Observable, of, retry, tap } from 'rxjs';
 import { ProductResponse } from '../../interfaces/ProductInterface';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WaitlistComponent } from '../../components/waitlist/waitlist.component';
+import { ProductComponent } from "../../components/product/product.component";
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, WaitlistComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ProductComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss',
