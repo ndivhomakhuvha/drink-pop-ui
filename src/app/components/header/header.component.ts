@@ -19,4 +19,5 @@ export class HeaderComponent {
     iconColor: 'black',
     iconHeight: '20px',
   };
+  authenticated: boolean = false;
 }

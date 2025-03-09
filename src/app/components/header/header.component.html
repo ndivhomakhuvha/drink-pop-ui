@@ -1,11 +1,19 @@
 <div class="flex flex-row justify-evenly items-center w-full h-14">
   <div class="flex flex-row items-center gap-0.5">
     <app-image [image]="logoImage" [height]="imageHeight"></app-image>
-    <h1 class="font-extrabold text-2xl">DRINKPOP</h1>
+    <h1 class="font-black text-2xl">DRINKPOP</h1>
   </div>
+
   <div class="flex flex-row items-center gap-4">
-    <h1 class="flex font-black text-2xl">EN</h1>
-    <button class="p-1.5 w-auto  border-2 gap-1 rounded-3xl flex flex-row items-center font-bold">BUCKET
-      <app-icons [icon]="icon"></app-icons></button>
+    <h1 class="font-black text-2xl">EN</h1>
+    @if (authenticated) {
+      <button class="p-1.5 w-auto  border-2 gap-1 rounded-3xl flex flex-row items-center font-bold">SIGN UP</button>
+    }
+    @else {
+      <button class="p-1.5 w-auto  border-2 gap-1 rounded-3xl flex flex-row items-center font-bold">BUCKET
+        <app-icons [icon]="icon"></app-icons></button>
+    }
+
   </div>
+
 </div>
