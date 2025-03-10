@@ -15,9 +15,9 @@ export class HeaderComponent {
     'https://res.cloudinary.com/dpf2xpavj/image/upload/v1740163067/drink-pop_m40wea.png';
   imageHeight: string = '35px';
   icon: Icon = {
-    iconName: 'bag-handle-outline',
+    iconName: 'bag-handle',
     iconColor: 'black',
     iconHeight: '20px',
   };
-  authenticated: boolean = false;
+  authenticated: boolean = true;
 }

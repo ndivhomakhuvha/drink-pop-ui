@@ -1,4 +1,4 @@
-export const baseUrl: string = 'https://biri-marung.com';
+export const baseUrl: string = 'http://localhost:8080';
 export const productsEndpoints = {
   getAllProducts: `${baseUrl}/products/all`,
 };

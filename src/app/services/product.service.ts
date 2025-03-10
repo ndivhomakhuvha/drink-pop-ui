@@ -1,12 +1,9 @@
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductResponse } from '../interfaces/ProductInterface';
+import { Product } from '../interfaces/Product';
 import { productsEndpoints } from '../environment/environment';
+import { ResponseInterface } from '../interfaces/ResponeInterface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +11,9 @@ import { productsEndpoints } from '../environment/environment';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<ProductResponse> {
-    return this.http.get<ProductResponse>(productsEndpoints.getAllProducts);
+  getProducts(): Observable<ResponseInterface<Product[]>> {
+    return this.http.get<ResponseInterface<Product[]>>(
+      productsEndpoints.getAllProducts
+    );
   }
 }

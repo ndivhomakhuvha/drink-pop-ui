@@ -1,0 +1,10 @@
+<app-search-input></app-search-input>
+
+<div class="h-auto max-w-full mt-3">
+
+  <div *ngIf="products$ | async as response" class="flex flex-wrap gap-4  w-4xl m-auto items-center justify-center">
+    @for (item of response.data; track $index) {
+      <app-product [product]="item"></app-product>
+    }
+  </div>
+</div>
